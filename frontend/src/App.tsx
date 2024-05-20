@@ -1,12 +1,14 @@
-
-import './App.css'
-import MainPage from './pages/MainPage'
+import "./App.css";
+import Header from "./components/Header/Header";
+import MainPage from "./pages/MainPage/MainPage";
 
 function App() {
-
   return (
-   <MainPage/>
-  )
+    <>
+      <Header />
+      <MainPage />
+    </>
+  );
 }
 
-export default App
+export default App;

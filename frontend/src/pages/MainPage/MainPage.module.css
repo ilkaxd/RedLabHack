@@ -1,0 +1,19 @@
+.MainPage {
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+}
+.charts {
+  display: flex;
+  width: 100%;
+  height: 400px;
+}
+.lines {
+  flex: 0 0 70%;
+  height: auto;
+}
+.bars{
+  height: auto;
+  flex: 1;
+
+}
