@@ -16,6 +16,10 @@ const LineChart = (props:IProps) => {
         grid:{
             width:'auto'
         },
+        tooltip: {
+
+          show: true,
+        },
         title: {
           // text: 'World Population'
         },
@@ -39,6 +43,7 @@ const LineChart = (props:IProps) => {
     });
     linesChart.setOption(getOption());
   }, []);
+
 
   return (
       <div className={className} ref={ref} />

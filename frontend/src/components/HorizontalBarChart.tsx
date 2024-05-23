@@ -1,5 +1,6 @@
 import { useEffect, useRef } from "react";
 import * as echarts from "echarts";
+import Preloader from "./Preloader/Preloader";
 
 interface IProps {
   data: [];
@@ -15,6 +16,10 @@ const HorizontalBarChart = (props: IProps): JSX.Element => {
       return {
         title: {
           // text: 'World Population'
+        },
+        tooltip: {
+
+          show: true,
         },
         xAxis: {
           type: 'value',
@@ -38,6 +43,7 @@ const HorizontalBarChart = (props: IProps): JSX.Element => {
     });
     horizontalBarsChart.setOption(getOption());
   }, []);
+
 
   return (
       <div className={className} ref={horizontalBars} />
