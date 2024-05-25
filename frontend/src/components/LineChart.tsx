@@ -31,7 +31,7 @@ const LineChart = (props:IProps) => {
         series: [
           {
             type: 'line',
-            data: [19325, 23438, 31000, 121594, 134141, 681807]
+            data: data?.X?.map((el)=>el[tagName.slice(-1)-1])
           }
         ]
       }
