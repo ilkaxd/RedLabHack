@@ -11,9 +11,9 @@ import styles from "./pages/MainPage/MainPage.module.css";
 function App() {
   const [chartsData, setChartsData] = useState([]);
   const [isLoad, setIsLoad] = useState(false);
-  const [start, setStart] = useState();
-  const [end, setEnd] = useState();
-  const [tagName, setTagName] = useState()
+  const [start, setStart] = useState('');
+  const [end, setEnd] = useState('');
+  const [tagName, setTagName] = useState('Tag1')
 
   const onChangeTagName = (e) => {
     setTagName(e.target.value);
@@ -28,11 +28,28 @@ function App() {
     setEnd(e.target.value);
   };
 
-  const onDetect = () => {};
+  const onDetect = () => {
+    const params = new URLSearchParams()
+    params.append('tag_name', tagName)
+    params.append('start', start)
+    params.append('end', end)
+    const getData = async () => {
+      const result = await $api.get("/", {params});
+      return result.data;
+    };
+    setIsLoad(true);
+    getData()
+      .then((res) => setChartsData(res))
+      .catch((error) => console.log(error))
+      .finally(() => setIsLoad(false));
+
+  };
 
   useEffect(() => {
+    const params = new URLSearchParams()
+    params.append('tag_name', tagName)
     const getData = async () => {
-      const result = await $api.get("/");
+      const result = await $api.get("/", {params});
       return result.data;
     };
     setIsLoad(true);
