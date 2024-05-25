@@ -47,7 +47,7 @@ const MainPage = () => {
           <Detector />
           Детектировать
         </button>
-        <input type="datetime-local" value={end} onChange={onChangeEnd} />
+        <input type="datetime-local" className={styles.input} value={end} onChange={onChangeEnd} />
       </div>
       <Table data={chartsData.X} />
     </div>

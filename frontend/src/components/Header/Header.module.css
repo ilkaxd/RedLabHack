@@ -17,7 +17,7 @@
 .Logo_block {
   display: flex;
   align-items: center;
-  gap: 50px;
+  gap: 60px;
 }
 
 .Button {
@@ -26,4 +26,12 @@
   justify-content: center;
   color: white;
   background-color: #ed4a1c;
+}
+
+.Select{
+    color: white;
+    background-color: #ed4a1c;
+    padding: 12px;
+    border-radius:8px;
+    font-size: 1em;
 }
