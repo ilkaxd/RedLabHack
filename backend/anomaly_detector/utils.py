@@ -1,6 +1,10 @@
-def make_prediction(X):
+import random
+
+
+def make_prediction(X, tag):
     result = {
-        'is_anomaly': False,
+        'value': X[tag],
+        'is_anomaly': random.choice([True, False]),
         'probability': 70
     }
 

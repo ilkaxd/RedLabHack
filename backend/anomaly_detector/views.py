@@ -16,6 +16,11 @@ def get_anomalies(request):
     '''
     Выгрузка текущих значений аномалий
     '''
+    # Подгружаем параметры
+    tag = request.GET.get('tag_name', '')
+    start = request.GET.get('start', None)
+    end = request.GET.get('end', None)
+
     # Подгружаем входные данные
     file_path = os.path.join('.', 'data.csv')
     inputs = pd.read_csv(
@@ -24,10 +29,13 @@ def get_anomalies(request):
         parse_dates=True,
         date_format='%d.%m.%Y',
         index_col=0
-    )
+    )[start:end]
+
     # Оцениваем аномалии
-    Y = [make_prediction(x) for x in inputs]
-    #     'Y_distribution': np.histogram(Y)
+    Y = []
+    for i in range(inputs.shape[0]):
+        prediction = make_prediction(inputs.iloc[i], tag)
+        Y.append(prediction)
 
     # Формируем ответ
     serializer = DashboardSerializer({
@@ -55,20 +63,3 @@ def export_result(request):
     writer = csv.writer(response, delimiter=';')
     writer.writerow(["First row", "Foo", "Bar", "Baz"])
     return response
-
-
-@api_view(['POST'])
-def import_data(request):
-    '''
-    Загружаем данные
-    '''
-    # request.FIlES
-    return Response({'good': True})
-
-
-@api_view(['POST'])
-def predict(requests):
-    '''
-    Прогнозируем изменение параметра
-    '''
-    return Response({'good': 'true'})
