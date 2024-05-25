@@ -1,13 +1,18 @@
 import styles from "./Header.module.css";
 import Logo from "../../assets/Logo.svg?react";
 import Export from "../../assets/Export.svg?react";
-import Import from "../../assets/Import.svg?react";
+import { $api } from "../../services/axios";
 interface IProps {
   options: string[];
   value: string;
   onChange: (value: string) => void;
 }
 const Header = ({ options, value, onChange }: IProps) => {
+  
+  const onExport = () => {
+    $api.get("/export").catch((e) => console.log(e));
+  };
+
   return (
     <div className={styles.Header}>
       <div className={styles.Logo_block}>
@@ -25,9 +30,9 @@ const Header = ({ options, value, onChange }: IProps) => {
             <option key={el}>{el}</option>
           ))}
         </select>
-        <button className={styles.Button}>
-          <Import />
-          Импорт
+        <button className={styles.Button} onClick={onExport}>
+          <Export />
+          Экспорт
         </button>
       </div>
     </div>
