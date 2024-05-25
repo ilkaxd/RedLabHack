@@ -3,17 +3,22 @@
   width: 100%;
   flex-direction: column;
 }
-.charts {
-  display: flex;
+
+.lines {
   width: 100%;
   height: 400px;
 }
-.lines {
-  flex: 0 0 70%;
-  height: auto;
+.button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  background-color: #ed4a1c;
 }
-.bars{
-  height: auto;
-  flex: 1;
-
+.inputs {
+  display: flex;
+  justify-content: space-between;
+  flex-direction: row;
+  align-items: center;
+  margin-bottom: 20px;
 }

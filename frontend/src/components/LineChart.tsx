@@ -1,12 +1,13 @@
 import { useEffect, useRef } from 'react';
 import * as echarts from "echarts";
 interface IProps {
-    data: [];
+    data: any;
     className:string;
+    tagName:string
   }
   
 const LineChart = (props:IProps) => {
-    const { data, className } = props;
+    const { data, className, tagName } = props;
 
   const ref = useRef();
 
@@ -20,12 +21,9 @@ const LineChart = (props:IProps) => {
 
           show: true,
         },
-        title: {
-          // text: 'World Population'
-        },
         xAxis: {
             type: 'category',
-            data: ['Brazil', 'Indonesia', 'USA', 'India', 'China', 'World']
+            data: data?.indexes
         },
         yAxis: {
           type: 'value',
