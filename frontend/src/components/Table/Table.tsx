@@ -15,9 +15,9 @@ const Table = (props: IProps) => {
       </thead>
       <tbody className={styles.body}>
         {data?.map((el) => (
-          <tr key={el}>
+          <tr key={`${el}${Math.random()}`}>
             {el.map((item) => (
-              <td key={item}>{item}</td>
+              <td key={`${item}${Math.random()}`}>{item}</td>
             ))}
           </tr>
         ))}

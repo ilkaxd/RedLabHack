@@ -16,7 +16,7 @@ const Header = ({ options, value, onChange }: IProps) => {
       </div>
       <div className={styles.Buttons_block}>
         <select
-          className={styles.Button}
+          className={styles.Select}
           value={value}
           onChange={onChange}
           defaultValue={"Througput"}

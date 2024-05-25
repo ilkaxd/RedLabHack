@@ -11,14 +11,25 @@ import styles from "./pages/MainPage/MainPage.module.css";
 function App() {
   const [chartsData, setChartsData] = useState([]);
   const [isLoad, setIsLoad] = useState(false);
-  const [start, setStart] = useState('');
-  const [end, setEnd] = useState('');
-  const [tagName, setTagName] = useState('Tag1')
+  const [start, setStart] = useState("");
+  const [end, setEnd] = useState("");
+  const [tagName, setTagName] = useState("Tag1");
 
   const onChangeTagName = (e) => {
     setTagName(e.target.value);
   };
 
+  const formatDate = (date) => {
+    const dd = String(date.getDate()).padStart(2, "0");
+    const mm = String(date.getMonth() + 1).padStart(2, "0"); // January is 0!
+    const yyyy = date.getFullYear();
+    const hh = String(date.getHours()).padStart(2, "0");
+    const min = String(date.getMinutes()).padStart(2, "0");
+    const ss = String(date.getSeconds()).padStart(2, "0");
+
+
+    return `${dd}.${mm}.${yyyy} ${hh}:${min}:${ss}`;
+  };
 
   const onChangeStart = (e) => {
     setStart(e.target.value);
@@ -29,12 +40,16 @@ function App() {
   };
 
   const onDetect = () => {
-    const params = new URLSearchParams()
-    params.append('tag_name', tagName)
-    params.append('start', start)
-    params.append('end', end)
+    const inputDateStart = new Date(start);
+    const inputDateEnd = new Date(end);
+    const params = new URLSearchParams();
+    params.append("tag_name", tagName);
+    params.append("start", formatDate(inputDateStart));
+    console.log(formatDate(inputDateStart));
+    console.log(formatDate(inputDateEnd));
+    params.append("end", formatDate(inputDateEnd));
     const getData = async () => {
-      const result = await $api.get("/", {params});
+      const result = await $api.get("/", { params });
       return result.data;
     };
     setIsLoad(true);
@@ -42,14 +57,13 @@ function App() {
       .then((res) => setChartsData(res))
       .catch((error) => console.log(error))
       .finally(() => setIsLoad(false));
-
   };
 
   useEffect(() => {
-    const params = new URLSearchParams()
-    params.append('tag_name', tagName)
+    const params = new URLSearchParams();
+    params.append("tag_name", tagName);
     const getData = async () => {
-      const result = await $api.get("/", {params});
+      const result = await $api.get("/", { params });
       return result.data;
     };
     setIsLoad(true);
@@ -65,9 +79,17 @@ function App() {
 
   return (
     <>
-      <Header options={chartsData?.columns} value={tagName} onChange={onChangeTagName}/>
+      <Header
+        options={chartsData?.columns}
+        value={tagName}
+        onChange={onChangeTagName}
+      />
       <div className={styles.MainPage}>
-        <LineChart className={styles.lines} data={chartsData} tagName={tagName}/>
+        <LineChart
+          className={styles.lines}
+          data={chartsData}
+          tagName={tagName}
+        />
         <div className={styles.inputs}>
           <input type="datetime-local" value={start} onChange={onChangeStart} />
           <button className={styles.button} type="button" onClick={onDetect}>
