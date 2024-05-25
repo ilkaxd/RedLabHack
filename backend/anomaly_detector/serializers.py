@@ -2,6 +2,7 @@ from rest_framework import serializers
 
 
 class AnomalyDetectionSerializer(serializers.Serializer):
+    value = serializers.CharField()
     is_anomaly = serializers.BooleanField()
     probability = serializers.FloatField()
 
