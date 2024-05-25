@@ -7,6 +7,7 @@ import { $api } from "./services/axios";
 import Detector from "./assets/Detector.svg?react";
 import LineChart from "./components/LineChart";
 import styles from "./pages/MainPage/MainPage.module.css";
+import { formatDate } from "./utils";
 
 function App() {
   const [chartsData, setChartsData] = useState([]);
@@ -17,18 +18,6 @@ function App() {
 
   const onChangeTagName = (e) => {
     setTagName(e.target.value);
-  };
-
-  const formatDate = (date) => {
-    const dd = String(date.getDate()).padStart(2, "0");
-    const mm = String(date.getMonth() + 1).padStart(2, "0"); // January is 0!
-    const yyyy = date.getFullYear();
-    const hh = String(date.getHours()).padStart(2, "0");
-    const min = String(date.getMinutes()).padStart(2, "0");
-    const ss = String(date.getSeconds()).padStart(2, "0");
-
-
-    return `${dd}.${mm}.${yyyy} ${hh}:${min}:${ss}`;
   };
 
   const onChangeStart = (e) => {
@@ -45,8 +34,6 @@ function App() {
     const params = new URLSearchParams();
     params.append("tag_name", tagName);
     params.append("start", formatDate(inputDateStart));
-    console.log(formatDate(inputDateStart));
-    console.log(formatDate(inputDateEnd));
     params.append("end", formatDate(inputDateEnd));
     const getData = async () => {
       const result = await $api.get("/", { params });
@@ -57,6 +44,8 @@ function App() {
       .then((res) => setChartsData(res))
       .catch((error) => console.log(error))
       .finally(() => setIsLoad(false));
+    setStart("");
+    setEnd("");
   };
 
   useEffect(() => {
