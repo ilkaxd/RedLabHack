@@ -19,7 +19,7 @@ pip install -r requirements.txt
 
 Выполняем миграции БД:
 ```bash
-python manage.py migrage
+python manage.py migrate
 ```
 
 Копируем [исходные данные (metrics_collector.tsv)](https://drive.google.com/drive/folders/1ym_jj7Q2siG8EQ2ZcV-et6F1KdK6-olU) в папку backend
