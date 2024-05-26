@@ -1,0 +1,37 @@
+.Header {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  align-items: center;
+}
+
+.Buttons_block {
+  display: flex;
+  max-height: 50px;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+}
+
+.Logo_block {
+  display: flex;
+  align-items: center;
+  gap: 60px;
+}
+
+.Button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  background-color: #ed4a1c;
+}
+
+.Select{
+    color: white;
+    background-color: #ed4a1c;
+    padding: 12px;
+    border-radius:8px;
+    font-size: 1em;
+}

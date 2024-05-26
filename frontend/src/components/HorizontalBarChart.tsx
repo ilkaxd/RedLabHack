@@ -1,29 +1,52 @@
 import { useEffect, useRef } from "react";
 import * as echarts from "echarts";
+import Preloader from "./Preloader/Preloader";
 
 interface IProps {
   data: [];
+  className:string
 }
 const HorizontalBarChart = (props: IProps): JSX.Element => {
-  const { data } = props;
+  const { data, className } = props;
 
   const horizontalBars = useRef();
 
   useEffect(() => {
     const getOption: object = () => {
       return {
+        title: {
+          // text: 'World Population'
+        },
+        tooltip: {
+
+          show: true,
+        },
+        xAxis: {
+          type: 'value',
+          boundaryGap: [0, 0.01]
+        },
+        yAxis: {
+          type: 'category',
+          data: ['Brazil', 'Indonesia', 'USA', 'India', 'China', 'World']
+        },
+        series: [
+          {
+            name: '2012',
+            type: 'bar',
+            data: [19325, 23438, 31000, 121594, 134141, 681807]
+          }
+        ]
       }
     };
     const horizontalBarsChart = echarts.init(horizontalBars.current, null, {
       renderer: "svg",
     });
     horizontalBarsChart.setOption(getOption());
-  }, [data]);
+  }, []);
+
 
   return (
-    <div>
-      <div  ref={horizontalBars} />
-    </div>
+      <div className={className} ref={horizontalBars} />
   );
 };
 
