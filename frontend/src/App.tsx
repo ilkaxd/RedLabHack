@@ -14,7 +14,7 @@ function App() {
   const [isLoad, setIsLoad] = useState(false);
   const [start, setStart] = useState("");
   const [end, setEnd] = useState("");
-  const [tagName, setTagName] = useState("Tag1");
+  const [tagName, setTagName] = useState("Throughput");
 
   const onChangeTagName = (e) => {
     setTagName(e.target.value);
@@ -51,6 +51,8 @@ function App() {
   useEffect(() => {
     const params = new URLSearchParams();
     params.append("tag_name", tagName);
+    params.append("start", '15.05.2024 00:00:00');
+    params.append("end", '16.05.2024 00:00:00');
     const getData = async () => {
       const result = await $api.get("/", { params });
       return result.data;
@@ -87,7 +89,7 @@ function App() {
           </button>
           <input type="datetime-local" value={end} onChange={onChangeEnd} />
         </div>
-        <Table data={chartsData.X} />
+        <Table data={chartsData} />
       </div>
     </>
   );

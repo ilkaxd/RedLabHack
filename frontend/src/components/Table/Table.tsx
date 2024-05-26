@@ -9,12 +9,12 @@ const Table = (props: IProps) => {
   return (
     <table>
       <thead className={styles.header}>
-        {data?.[0].map((el, index) => (
-          <th key={index}>{`X${index + 1}`}</th>
+        {data?.columns?.map((el) => (
+          <th key={el}>{el}</th>
         ))}
       </thead>
       <tbody className={styles.body}>
-        {data?.map((el) => (
+        {data?.X?.map((el) => (
           <tr key={`${el}${Math.random()}`}>
             {el.map((item) => (
               <td key={`${item}${Math.random()}`}>{item}</td>

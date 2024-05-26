@@ -22,6 +22,12 @@ const LineChart = (props: IProps) => {
   useEffect(() => {
     const anomaliesArray = separateAnomalies(data?.Y);
     const sort = setRange(anomaliesArray);
+    const tag = {
+      "Throughput":0,
+      "WebResponse":1,
+      "APDEX":2
+    }
+    const result =  data?.X?.map((el) => el[tag[tagName]])
     const getOption: object = () => {
       return {
         grid: {
@@ -36,12 +42,14 @@ const LineChart = (props: IProps) => {
         },
         yAxis: {
           type: "value",
+          name:tagName,
+          // nameLocation:'middle'
         },
 
         series: [
           {
             type: "line",
-            data: data?.X?.map((el) => el[tagName.slice(-1) - 1]),
+            data: result,
             itemStyle: {
               color: (param) => {
                 if (data?.Y[param.dataIndex]?.is_anomaly) {
