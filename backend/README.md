@@ -17,12 +17,12 @@ python -m venv venv
 pip install -r requirements.txt
 ```
 
+Копируем [исходные данные (metrics_collector.tsv)](https://drive.google.com/drive/folders/1ym_jj7Q2siG8EQ2ZcV-et6F1KdK6-olU) в папку backend
+
 Выполняем миграции БД:
 ```bash
 python manage.py migrate
 ```
-
-Копируем [исходные данные (metrics_collector.tsv)](https://drive.google.com/drive/folders/1ym_jj7Q2siG8EQ2ZcV-et6F1KdK6-olU) в папку backend
 
 Запускаем backend-сервер:
 ```bash
