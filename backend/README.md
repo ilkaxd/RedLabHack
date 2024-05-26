@@ -22,17 +22,11 @@ pip install -r requirements.txt
 python manage.py migrage
 ```
 
+Копируем [исходные данные (metrics_collector.tsv)](https://drive.google.com/drive/folders/1ym_jj7Q2siG8EQ2ZcV-et6F1KdK6-olU) в папку backend
+
 Запускаем backend-сервер:
 ```bash
 python manage.py runserver 0.0.0.0:8000
 ```
 
-Теперь по адресу http://127.0.0.1:8000/ доступен ответ в формате JSON:
-
-```
-{
-    'X': 2D массив 15 строк 15 столбцов, - отображаем в таблице
-    'Y': 1D массив (наверное будет 2D, добавится ось временных точек), - отображаем на основном графике + в таблице
-    'Y_distribution': (2 миссива: количество точек на интервале и сами интервалы) отображаем на графике справа
-}
-```
+Теперь по адресу http://127.0.0.1:8000/?tag_name=Throughput доступен ответ в формате JSON:
